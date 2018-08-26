@@ -21,7 +21,7 @@ public class Client {
 		
 		RandomSort random = new RandomSort();
 		random.test();
-		
+
 		BubbleSort bubble = new BubbleSort();
 		bubble.test();
 
