@@ -31,6 +31,9 @@ public class Client {
 		QuickSort quick = new QuickSort();
 		quick.test();
 		
+		CountingSort counting = new CountingSort();
+		counting.test();
+		
 		System.out.println("testes ok");
 		
 		System.out.println("Digite o tamanho do vetor.");
