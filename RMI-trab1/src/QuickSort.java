@@ -25,6 +25,8 @@ public class QuickSort extends Sort {
 	}
 
 	private Integer[] sort(Integer vet[], int lo, int hi) {
+		if(vet == null || vet.length < 2)
+			return vet;
 		int pivot_index = lo+(hi-lo)/2;
 		Integer pivot = vet[pivot_index];
 		int i = lo;
