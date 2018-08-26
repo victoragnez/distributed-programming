@@ -34,6 +34,9 @@ public class Client {
 		CountingSort counting = new CountingSort();
 		counting.test();
 		
+		BinaryTreeSort binaryTree = new BinaryTreeSort();
+		binaryTree.test();
+		
 		System.out.println("testes ok");
 		
 		System.out.println("Digite o tamanho do vetor.");
