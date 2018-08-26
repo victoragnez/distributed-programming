@@ -19,6 +19,12 @@ public class Client {
 		SelectionSort selection = new SelectionSort();
 		selection.test();
 		
+		HeapSort heap = new HeapSort();
+		heap.test();
+		
+		QuickSort quick = new QuickSort();
+		quick.test();
+		
 		System.out.println("testes ok");
 		
 		Compute stub = (Compute) Naming.lookup("rmi://localhost:12346/compute");
