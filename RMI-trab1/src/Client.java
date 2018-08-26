@@ -40,6 +40,9 @@ public class Client {
 		BinaryTreeSort binaryTree = new BinaryTreeSort();
 		binaryTree.test();
 		
+		StoogeSort stooge = new StoogeSort();
+		stooge.test();
+		
 		System.out.println("testes ok");
 		
 		System.out.println("Digite o tamanho do vetor.");

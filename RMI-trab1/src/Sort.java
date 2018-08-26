@@ -75,7 +75,7 @@ public abstract class Sort{
 		comp = Comparator.<Integer>naturalOrder();
 		for(int total = 0; total < 10; total++) {
 			Random rand = new Random();
-			int n = rand.nextInt(1000) + 1000;
+			int n = rand.nextInt(500) + 500;
 			vet = new Integer[n];
 			for(int i = 0; i < n; i++) {
 				vet[i] = rand.nextInt(2*n);
@@ -88,7 +88,7 @@ public abstract class Sort{
 		comp = Comparator.<Integer>naturalOrder();
 		for(int total = 0; total < 10; total++) {
 			Random rand = new Random();
-			int n = rand.nextInt(1000) + 1000;
+			int n = rand.nextInt(500) + 500;
 			vet = new Integer[n];
 			for(int i = 0; i < n; i++) {
 				vet[i] = rand.nextInt();
