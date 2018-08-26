@@ -26,10 +26,9 @@ public class HeapSort extends Sort{
 	
 	@Override
 	protected Integer[] sort() {
-		return sort(vet);
-	}
-	
-	private Integer[] sort(Integer vet[]){
+		if(vet == null)
+			return null;
+		
 		PriorityQueue<Integer>  heap = new PriorityQueue<Integer>();
 		for (int i = 0; i < vet.length; i++){
 			heap.add(vet[i]);

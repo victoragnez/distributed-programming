@@ -136,6 +136,10 @@ public abstract class Sort{
 				error += "Original Array:\n";
 				for(int j = 0; j < n; j++)
 					error += aux[j] + " ";
+				error += "\n";
+				error += "Returned Array:\n";
+				for(int j = 0; j < n; j++)
+					error += vet[j] + " ";
 				throw new RuntimeException(error);
 			}
 		}

@@ -30,7 +30,7 @@ public class StoogeSort extends Sort {
 	private Integer[] sort(Integer[] vet, int l, int r) {
 		if(r-l+1 < 2)
 			return vet;
-		if(comp.compare(vet[l], vet[r]) < 0) {
+		if(comp.compare(vet[l], vet[r]) > 0) {
 			Integer aux = vet[l];
 			vet[l] = vet[r];
 			vet[r] = aux;
