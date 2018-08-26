@@ -17,6 +17,7 @@ public class RadixSort extends Sort {
 		super.smallTests();
 		super.bigElementsTests();
 		super.bigArrayTests();
+		super.bigTests();
 	}
 	
 	@Override
