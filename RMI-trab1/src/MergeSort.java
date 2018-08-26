@@ -17,6 +17,7 @@ public class MergeSort extends Sort {
 		super.smallTests();
 		super.bigElementsTests();
 		super.bigArrayTests();
+		super.bigTests();
 	}
 	
 	@Override
