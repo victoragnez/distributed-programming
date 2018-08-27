@@ -22,12 +22,15 @@ public class QuickSort extends Sort {
 	
 	@Override
 	protected Integer[] sort() {
+		if(vet == null || vet.length < 2)
+			return vet;
 		return sort(vet,0, vet.length-1);
 	}
 
 	private Integer[] sort(Integer vet[], int lo, int hi) {
 		if(vet == null || vet.length < 2)
 			return vet;
+		
 		int pivot_index = lo+(hi-lo)/2;
 		Integer pivot = vet[pivot_index];
 		int i = lo;
@@ -50,10 +53,10 @@ public class QuickSort extends Sort {
 			}
 			
 			if(lo < j) 
-				sort(vet,lo, pivot_index);
+				sort(vet,lo, j);
 
 			if(hi > i)
-				sort(vet,pivot_index + 1, hi);
+				sort(vet, i, hi);
 		}
 		
 		return vet;
