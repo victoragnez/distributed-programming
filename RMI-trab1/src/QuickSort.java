@@ -14,13 +14,6 @@ public class QuickSort extends Sort {
 		super(Vet, Comp);
 	}
 	
-	public void test() {
-		super.smallTests();
-		super.bigElementsTests();
-		super.bigArrayTests();
-		super.bigTests();
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		if(vet == null || vet.length < 2)

@@ -13,11 +13,6 @@ public class CountingSort extends Sort {
 		super(Vet, Comp);
 	}
 	
-	public void test() {
-		super.smallTests();
-		super.bigArrayTests();
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		if(vet == null || vet.length < 2)

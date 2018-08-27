@@ -15,13 +15,6 @@ public class RadixSort extends Sort {
 		super(Vet, Comp);
 	}
 	
-	public void test() {
-		super.smallTests();
-		super.bigElementsTests();
-		super.bigArrayTests();
-		super.bigTests();
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		Integer max = getMax(vet);

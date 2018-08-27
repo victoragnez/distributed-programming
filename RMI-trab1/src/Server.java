@@ -18,13 +18,37 @@ public class Server extends UnicastRemoteObject implements Compute {
 		Sort ordena;
 		switch(sortType) {
 		case 0:
-			ordena = new SelectionSort(inputArray, Comp);
-			break;
-		case 1:
 			ordena = new InsertionSort(inputArray, Comp);
 			break;
-		case 2:
+		case 1:
 			ordena = new MergeSort(inputArray, Comp);
+			break;
+		case 2:
+			ordena = new SelectionSort(inputArray, Comp);
+			break;
+		case 3:
+			ordena = new RandomSort(inputArray, Comp);
+			break;
+		case 4:
+			ordena = new BubbleSort(inputArray, Comp);
+			break;
+		case 5:
+			ordena = new HeapSort(inputArray, Comp);
+			break;
+		case 6:
+			ordena = new QuickSort(inputArray, Comp);
+			break;
+		case 7:
+			ordena = new RadixSort(inputArray, Comp);
+			break;
+		case 8:
+			ordena = new CountingSort(inputArray, Comp);
+			break;
+		case 9:
+			ordena = new BinaryTreeSort(inputArray, Comp);
+			break;
+		case 10:
+			ordena = new StoogeSort(inputArray, Comp);
 			break;
 		default:
 			throw new RuntimeException("Invalid sortType");

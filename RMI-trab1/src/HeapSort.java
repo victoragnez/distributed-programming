@@ -17,13 +17,6 @@ public class HeapSort extends Sort{
 		super(Vet, comp);
 	}
 	
-	public void test() {
-		super.smallTests();
-		super.bigElementsTests();
-		super.bigArrayTests();
-		super.bigTests();
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		if(vet == null || vet.length < 2)
