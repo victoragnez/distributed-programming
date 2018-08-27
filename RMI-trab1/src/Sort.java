@@ -2,8 +2,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 
-import javax.management.RuntimeErrorException;
-
 public abstract class Sort{
 	protected Integer[] vet;
 	protected Comparator<Integer> comp;
