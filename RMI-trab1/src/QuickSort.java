@@ -26,41 +26,38 @@ public class QuickSort extends Sort {
 			return vet;
 		return sort(vet,0, vet.length-1);
 	}
+	private Integer partition(Integer vet[], int lo, int hi) {
+		Integer pivot = vet[hi];
+		
+		int i = lo;
+		for (int j = lo; j < hi; j++){
+			if(comp.compare(vet[j], pivot ) < 0 ) {
+				Integer temp = vet[j];
+				vet[j] = vet[i];
+				vet[i] = temp;
+				i++;
+			}
+		}
+		
+		Integer temp = vet[hi];
+		vet[hi] = vet[i];
+		vet[i] = temp;
+		
+		return i;
+		
+	}
 
 	private Integer[] sort(Integer vet[], int lo, int hi) {
 		if(vet == null || vet.length < 2)
 			return vet;
-		
-		int pivot_index = lo+(hi-lo)/2;
-		Integer pivot = vet[pivot_index];
-		int i = lo;
-		int j = hi;
+		if (lo < hi) {
+			Integer pivot = partition(vet, lo, hi);
+			sort(vet,lo, pivot - 1);
+			sort(vet, pivot + 1, hi);
 
-
-		while(comp.compare(vet[i], pivot) < 0) 
-			i++;
-		
-		while(comp.compare(vet[j], pivot) > 0) 
-			j--;
-		
-		if(i <= j) {
-			Integer temp = vet[i];
-			vet[i] = vet[j];
-			vet[j] = temp;
-			
-			i++;
-			j--;
+			return vet;
 		}
-		
-		if(lo < j) 
-			sort(vet,lo, j);
-
-		if(hi > i)
-			sort(vet, i, hi);
-	
-		
 		return vet;
-
 
 				
 	}

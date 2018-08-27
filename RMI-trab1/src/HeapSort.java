@@ -13,8 +13,8 @@ public class HeapSort extends Sort{
 		super(Vet);
 	}
 	
-	public HeapSort(Integer[] Vet, Comparator<Integer> Comp ){
-		super(Vet, Comp);
+	public HeapSort(Integer[] Vet, Comparator<Integer> comp ){
+		super(Vet, comp);
 	}
 	
 	public void test() {
@@ -26,10 +26,10 @@ public class HeapSort extends Sort{
 	
 	@Override
 	protected Integer[] sort() {
-		if(vet == null)
-			return null;
+		if(vet == null || vet.length < 2)
+			return vet;
 		
-		PriorityQueue<Integer>  heap = new PriorityQueue<Integer>();
+		PriorityQueue<Integer>  heap = new PriorityQueue<Integer>(vet.length, comp);
 		for (int i = 0; i < vet.length; i++){
 			heap.add(vet[i]);
 		}
