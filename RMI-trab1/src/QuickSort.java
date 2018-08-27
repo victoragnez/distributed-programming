@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.Random;
 
 public class QuickSort extends Sort {
 	public QuickSort(){
@@ -46,12 +47,21 @@ public class QuickSort extends Sort {
 		return i;
 		
 	}
-
+	
+	private Integer partition_random(Integer vet[], int lo, int hi ) {
+		Random rand = new Random();
+		int random_index = rand.nextInt((hi - lo) + 1) + lo;
+		Integer temp = vet[random_index];
+		vet[random_index] = vet[hi];
+		vet[hi] = temp;
+		return partition(vet, lo, hi);
+	}
+	
 	private Integer[] sort(Integer vet[], int lo, int hi) {
 		if(vet == null || vet.length < 2)
 			return vet;
 		if (lo < hi) {
-			Integer pivot = partition(vet, lo, hi);
+			Integer pivot = partition_random(vet, lo, hi);
 			sort(vet,lo, pivot - 1);
 			sort(vet, pivot + 1, hi);
 
