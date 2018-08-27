@@ -25,6 +25,9 @@ public class Client {
 		QuickSort quick = new QuickSort();
 		quick.test();
 		
+		RadixSort radix = new RadixSort();
+		radix.test();
+		
 		System.out.println("testes ok");
 		
 		Compute stub = (Compute) Naming.lookup("rmi://localhost:12346/compute");
