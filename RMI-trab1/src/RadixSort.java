@@ -52,7 +52,36 @@ public class RadixSort extends Sort {
 		}
 		return m;
 	}
-
+	private ArrayList<Integer> countSort(List<Integer> positives,Integer max) {
+		for(int  i = 1; max/i > 0; i *= 10) {
+			
+			Integer out[]   = new Integer[positives.size()];
+			Integer count_digit[] = new Integer[10];
+			
+			for(int j = 0; j < 10; j++) 
+				count_digit[j] = 0;
+			
+			for(int j = 0; j < positives.size(); j++) 
+				count_digit[ (positives.get(j)/ i) % 10]++;
+			
+			for(int j = 1; j < 10 ; j++)
+				count_digit[j] += count_digit[j -1];
+				
+			
+			for (int j = positives.size() - 1; j >= 0; j--){
+				 
+	            out[count_digit[ (positives.get(j)/i)%10 ] - 1] = positives.get(j);
+	            count_digit[ (positives.get(j)/i)%10 ]--;
+	       
+			}
+			 
+	        for (int j = 0; j < positives.size(); j++)
+	        	positives.set(j, out[j]);
+		}
+		
+		return (ArrayList<Integer>) positives;
+		
+	}
 	private Integer[] sort(Integer vet[],Integer max,Integer min){
 		if(vet == null || vet.length < 2)
 			return vet;
@@ -62,68 +91,21 @@ public class RadixSort extends Sort {
 		
 		for(int  i = 0; i < vet.length; i++) {
 			if(vet[i] < 0)
-				negatives.add(vet[i]);
+				negatives.add(Math.abs(vet[i]));
 			else
 				positives.add(vet[i]);
 		}
 		
-		for(int  i = 1; Math.abs(min)/i > 0; i *= 10) {
-			Integer out[]   = new Integer[negatives.size()];
-			for(int j = 0; j < vet.length; j++) 
-				out[j] = 0;
-			
-			Integer count_digit[] = new Integer[10];
-			
-			for(int j = 0; j < 10; j++) 
-				count_digit[j] = 0;
-			
-			for(int j = 0; j < negatives.size(); j++) 
-				count_digit[ negatives.get(j) %i]++;
-			
-			for(int j = 1; j < 10 ; j++) {
-				count_digit[j] += count_digit[j -1];
-			}
-			
-			for (int j = negatives.size() - 1; j >= 0; j--){
-				 
-	            out[count_digit[ (negatives.get(j)/i)%10 ] - 1] = negatives.get(j);
-	            count_digit[ (negatives.get(j)/i)%10 ]--;
-	        }
-			 
-	        for (int j = 0; j < negatives.size(); j++)
-	            vet[j] = out[negatives.size() -1 -j];
-			
-			
+		negatives = countSort(negatives, Math.abs(min));
+		
+		for(int i = 0; i < negatives.size(); i++) {
+			vet[i] = -1 * negatives.get(negatives.size() - i -1);
 		}
 		
-		for(int  i = 1; Math.abs(max)/i > 0; i *= 10) {
-			Integer out[]   = new Integer[positives.size()];
-			for(int j = 0; j < vet.length; j++) 
-				out[j] = 0;
-			
-			Integer count_digit[] = new Integer[10];
-			
-			for(int j = 0; j < 10; j++) 
-				count_digit[j] = 0;
-			
-			for(int j = 0; j < positives.size(); j++) 
-				count_digit[ positives.get(j) % i]++;
-			
-			for(int j = 1; j < 10 ; j++) {
-				count_digit[j] += count_digit[j -1];
-			}
-			
-			for (int j = positives.size() - 1; j >= 0; j--){
-				 
-	            out[count_digit[ (positives.get(j)/i)%10 ] - 1] = positives.get(j);
-	            count_digit[ (positives.get(j)/i)%10 ]--;
-	        }
-			 
-	        for (int j = 0; j < positives.size(); j++)
-	            vet[j + (negatives.size() -1)] = out[j];
-			
-			
-		}
+		positives = countSort(positives, max);
+		
+		for(int i = 0; i < positives.size(); i++) 
+			vet[i + negatives.size()] = positives.get(i);
 		
 		return vet;
 	}

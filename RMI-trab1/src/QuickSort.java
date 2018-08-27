@@ -36,28 +36,28 @@ public class QuickSort extends Sort {
 		int i = lo;
 		int j = hi;
 
-		while(i <= j){
-			while(comp.compare(vet[i], pivot) < 0) 
-				i++;
-			
-			while(comp.compare(vet[j], pivot) > 0) 
-				j--;
-			
-			if(i <= j) {
-				Integer temp = vet[i];
-				vet[i] = vet[j];
-				vet[j] = temp;
-				
-				i++;
-				j--;
-			}
-			
-			if(lo < j) 
-				sort(vet,lo, j);
 
-			if(hi > i)
-				sort(vet, i, hi);
+		while(comp.compare(vet[i], pivot) < 0) 
+			i++;
+		
+		while(comp.compare(vet[j], pivot) > 0) 
+			j--;
+		
+		if(i <= j) {
+			Integer temp = vet[i];
+			vet[i] = vet[j];
+			vet[j] = temp;
+			
+			i++;
+			j--;
 		}
+		
+		if(lo < j) 
+			sort(vet,lo, j);
+
+		if(hi > i)
+			sort(vet, i, hi);
+	
 		
 		return vet;
 
