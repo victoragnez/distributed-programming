@@ -29,10 +29,10 @@ public class Client {
 		heap.test();
 		
 		QuickSort quick = new QuickSort();
-		quick.test();
+		//quick.test();
 		
 		RadixSort radix = new RadixSort();
-		radix.test();
+		//radix.test();
 		
 		CountingSort counting = new CountingSort();
 		counting.test();

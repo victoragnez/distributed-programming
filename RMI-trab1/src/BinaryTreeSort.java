@@ -1,6 +1,8 @@
 import java.util.Comparator;
 import java.util.Random;
 
+import javafx.util.Pair;
+
 public class BinaryTreeSort extends Sort {
 	
 	public BinaryTreeSort(){
@@ -92,26 +94,27 @@ public class BinaryTreeSort extends Sort {
 			}
 		}
 		
-		private void split(Node node, int v, Node a, Node b){
+		private Pair<Node,Node> split(Node node, int v){
 			if(node == null){
-				a = b = null;
-				return;
+				return new Pair<Node,Node>(null,null);
 			}
 			if(comp.compare(node.value, v) <= 0){
-				split(node.right, v, node.right, b);
-				a = node;
-				a.updSize();
-			}else{
-				split(node.left, v, a, node.left);
-				b = node;
-				b.updSize();
+				Pair<Node,Node> returned = split(node.right, v);
+				node.right = returned.getKey();
+				node.updSize();
+				return new Pair<Node,Node>(node, returned.getValue());
+			}
+			else{
+				Pair<Node,Node> returned = split(node.left, v);
+				node.left = returned.getValue();
+				node.updSize();
+				return new Pair<Node,Node>(returned.getKey(), node);
 			}
 		}
 		
 		public void insert(Integer val) {
-			Node a = null, b = null;
-			split(root, val, a, b);
-			root = merge(a, merge(new Node(val), b));
+			Pair<Node,Node> returned = split(root, val);
+			root = merge(returned.getKey(), merge(new Node(val), returned.getValue()));
 		}
 		
 		public Integer[] traverse() {
