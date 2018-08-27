@@ -19,6 +19,12 @@ public class Client {
 		SelectionSort selection = new SelectionSort();
 		selection.test();
 		
+		RandomSort random = new RandomSort();
+		random.test();
+
+		BubbleSort bubble = new BubbleSort();
+		bubble.test();
+
 		HeapSort heap = new HeapSort();
 		heap.test();
 		
@@ -28,14 +34,20 @@ public class Client {
 		RadixSort radix = new RadixSort();
 		radix.test();
 		
-		System.out.println("testes ok");
+		CountingSort counting = new CountingSort();
+		counting.test();
+
+		BinaryTreeSort binaryTree = new BinaryTreeSort();
+		binaryTree.test();
 		
-		Compute stub = (Compute) Naming.lookup("rmi://localhost:12346/compute");
+		System.out.println("testes ok");
 		
 		System.out.println("Digite o tamanho do vetor.");
 		
 		Scanner entrada = new Scanner(System.in);
 		Integer n = Integer.valueOf(entrada.next());
+		
+		Compute stub = (Compute) Naming.lookup("rmi://localhost:12346/compute");
 		
 		Integer[] vet = new Integer[n];
 		

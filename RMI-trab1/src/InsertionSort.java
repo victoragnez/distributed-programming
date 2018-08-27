@@ -17,25 +17,18 @@ public class InsertionSort extends Sort {
 		super.smallTests();
 		super.bigElementsTests();
 		super.bigArrayTests();
+		super.bigTests();
 	}
 	
 	@Override
 	protected Integer[] sort() {
-		return sort(vet);
-	}
-	
-	private Integer[] sort(Integer vet[]){
 		if(vet == null || vet.length < 2)
 			return vet;
 		for(int i = 0; i < vet.length; i++){
-			try{
-				for(int j = i; j > 0 && comp.compare(vet[j],vet[j-1]) < 0; j--){
-					Integer tmp = vet[j-1];
-					vet[j-1] = vet[j];
-					vet[j] = tmp;
-				}
-			}catch(Exception e){
-				System.out.println(e.getMessage());
+			for(int j = i; j > 0 && comp.compare(vet[j],vet[j-1]) < 0; j--){
+				Integer tmp = vet[j-1];
+				vet[j-1] = vet[j];
+				vet[j] = tmp;
 			}
 		}
 		return vet;

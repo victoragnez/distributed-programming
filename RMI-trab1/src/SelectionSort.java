@@ -17,14 +17,11 @@ public class SelectionSort extends Sort {
 		super.smallTests();
 		super.bigElementsTests();
 		super.bigArrayTests();
+		super.bigTests();
 	}
 	
 	@Override
 	protected Integer[] sort() {
-		return sort(vet);
-	}
-	
-	private Integer[] sort(Integer vet[]){
 		if(vet == null || vet.length < 2)
 			return vet;
 		for(int i = 0; i < vet.length; i++){
