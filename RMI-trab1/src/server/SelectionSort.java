@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package server;
 
 public class SelectionSort extends Sort {
 	public SelectionSort(){
@@ -9,17 +9,13 @@ public class SelectionSort extends Sort {
 		super(Vet);
 	}
 	
-	public SelectionSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 		for(int i = 0; i < vet.length; i++){
 			for(int j = i+1; j < vet.length; j++){
-				if(comp.compare(vet[j],vet[i]) < 0){
+				if(vet[j] < vet[i]){
 					Integer tmp = vet[i];
 					vet[i] = vet[j];
 					vet[j] = tmp;

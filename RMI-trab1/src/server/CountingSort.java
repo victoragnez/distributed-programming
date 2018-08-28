@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package server;
 
 public class CountingSort extends Sort {
 	public CountingSort(){
@@ -7,10 +7,6 @@ public class CountingSort extends Sort {
 	
 	public CountingSort(Integer[] Vet){
 		super(Vet);
-	}
-	
-	public CountingSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
 	}
 	
 	@Override

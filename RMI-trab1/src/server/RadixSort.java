@@ -1,5 +1,6 @@
+package server;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class RadixSort extends Sort {
@@ -9,10 +10,6 @@ public class RadixSort extends Sort {
 	
 	public RadixSort(Integer[] Vet){
 		super(Vet);
-	}
-	
-	public RadixSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
 	}
 	
 	@Override

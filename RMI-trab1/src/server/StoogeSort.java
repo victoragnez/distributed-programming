@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package server;
 
 public class StoogeSort extends Sort {
 	public StoogeSort(){
@@ -7,10 +7,6 @@ public class StoogeSort extends Sort {
 	
 	public StoogeSort(Integer[] Vet){
 		super(Vet);
-	}
-	
-	public StoogeSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
 	}
 	
 	@Override
@@ -23,7 +19,7 @@ public class StoogeSort extends Sort {
 	private Integer[] sort(Integer[] vet, int l, int r) {
 		if(r-l+1 < 2)
 			return vet;
-		if(comp.compare(vet[l], vet[r]) > 0) {
+		if(vet[r] < vet[l]) {
 			Integer aux = vet[l];
 			vet[l] = vet[r];
 			vet[r] = aux;

@@ -1,4 +1,5 @@
-import java.util.Comparator;
+package server;
+
 import java.util.Random;
 
 public class QuickSort extends Sort {
@@ -8,10 +9,6 @@ public class QuickSort extends Sort {
 	
 	public QuickSort(Integer[] Vet){
 		super(Vet);
-	}
-	
-	public QuickSort(Integer[] Vet, Comparator<Integer> Comp ){
-		super(Vet, Comp);
 	}
 	
 	@Override
@@ -25,7 +22,7 @@ public class QuickSort extends Sort {
 		
 		int i = lo;
 		for (int j = lo; j < hi; j++){
-			if(comp.compare(vet[j], pivot ) < 0 ) {
+			if(vet[j] < pivot ) {
 				Integer temp = vet[j];
 				vet[j] = vet[i];
 				vet[i] = temp;

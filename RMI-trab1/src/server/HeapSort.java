@@ -1,8 +1,6 @@
+package server;
 
-
-import java.util.Comparator;
 import java.util.PriorityQueue;
-
 
 public class HeapSort extends Sort{
 	public HeapSort(){
@@ -13,16 +11,12 @@ public class HeapSort extends Sort{
 		super(Vet);
 	}
 	
-	public HeapSort(Integer[] Vet, Comparator<Integer> comp ){
-		super(Vet, comp);
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 		
-		PriorityQueue<Integer>  heap = new PriorityQueue<Integer>(vet.length, comp);
+		PriorityQueue<Integer>  heap = new PriorityQueue<Integer>(vet.length);
 		for (int i = 0; i < vet.length; i++){
 			heap.add(vet[i]);
 		}

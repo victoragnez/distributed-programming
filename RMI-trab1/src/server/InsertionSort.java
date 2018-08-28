@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package server;
 
 public class InsertionSort extends Sort {
 	public InsertionSort(){
@@ -9,16 +9,12 @@ public class InsertionSort extends Sort {
 		super(Vet);
 	}
 	
-	public InsertionSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
-	}
-	
 	@Override
 	protected Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 		for(int i = 0; i < vet.length; i++){
-			for(int j = i; j > 0 && comp.compare(vet[j],vet[j-1]) < 0; j--){
+			for(int j = i; j > 0 && vet[j] < vet[j-1]; j--){
 				Integer tmp = vet[j-1];
 				vet[j-1] = vet[j];
 				vet[j] = tmp;

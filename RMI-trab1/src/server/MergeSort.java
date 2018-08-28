@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package server;
 
 public class MergeSort extends Sort {
 	public MergeSort(){
@@ -7,10 +7,6 @@ public class MergeSort extends Sort {
 	
 	public MergeSort(Integer[] Vet){
 		super(Vet);
-	}
-	
-	public MergeSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
 	}
 	
 	@Override
@@ -32,7 +28,7 @@ public class MergeSort extends Sort {
 		right = sort(right);
 		int i = 0, j = 0;
 		while(i < leftLen || j < rightLen){
-			if(i == leftLen || (j < rightLen && comp.compare(right[j],left[i]) < 0)){
+			if(i == leftLen || (j < rightLen && right[j] < left[i])){
 				vet[i+j] = right[j];
 				j++;
 			}

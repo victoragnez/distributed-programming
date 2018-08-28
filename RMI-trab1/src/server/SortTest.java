@@ -1,3 +1,5 @@
+package server;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
@@ -26,17 +29,17 @@ public class SortTest {
 	@Parameters
 	public static Collection<Object[]> tests(){
 		ArrayList<Object[]> a = new ArrayList<Object[]>();
-		adiciona(a, InsertionSort.class, true, true, true, true, false);
-		adiciona(a, MergeSort.class, true, true, true, true, true);
-		adiciona(a, SelectionSort.class, true, true, true, true, false);
-		adiciona(a, RandomSort.class, true, true, false, false, false);
-		adiciona(a, BubbleSort.class, true, true, true, true, false);
-		adiciona(a, HeapSort.class, true, true, true, true, true);
-		adiciona(a, QuickSort.class, true, true, true, true, true);
-		adiciona(a, RadixSort.class, true, true, true, true, true);
-		adiciona(a, CountingSort.class, true, false, true, false, false);
-		adiciona(a, BinaryTreeSort.class, true, true, true, true, true);
-		adiciona(a, StoogeSort.class, true, true, true, true, false);
+		adiciona(a, InsertionSort.class, true, true, false);
+		adiciona(a, MergeSort.class, true, true, true);
+		adiciona(a, SelectionSort.class, true, true, false);
+		adiciona(a, RandomSort.class, true, false, false);
+		adiciona(a, BubbleSort.class, true, true, false);
+		adiciona(a, HeapSort.class, true, true, true);
+		adiciona(a, QuickSort.class, true, true, true);
+		adiciona(a, RadixSort.class, true, true, true);
+		adiciona(a, CountingSort.class, false, true, false);
+		adiciona(a, BinaryTreeSort.class, true, true, true);
+		adiciona(a, StoogeSort.class, true, true, false);
 		return a;
 	}
 
@@ -50,9 +53,9 @@ public class SortTest {
 		}
 	}
 	
-	private static void adiciona(ArrayList<Object[]> a, Class<? extends Sort> s, boolean small, boolean bigElements, boolean bigArray, boolean bigTest, boolean giantTest) {
+	private static void adiciona(ArrayList<Object[]> a, Class<? extends Sort> s, boolean bigElements, boolean bigArray, boolean giantTest) {
 		Random rand = new Random();
-		if(small) {
+		{
 			adiciona(a, s, new Integer[]{6,-1,3,2});
 			adiciona(a, s, new Integer[]{6,3,-1,2});
 			adiciona(a, s, new Integer[]{6,-3,1,2});
@@ -90,7 +93,7 @@ public class SortTest {
 				adiciona(a, s, vet);
 			}
 		}
-		if(bigTest) {
+		if(bigElements && bigArray) {
 			for(int total = 0; total < 15; total++) {
 				int n = rand.nextInt(100) + 200;
 				Integer[] vet = new Integer[n];

@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package server;
 
 public class BubbleSort extends Sort {
 	public BubbleSort(){
@@ -7,10 +7,6 @@ public class BubbleSort extends Sort {
 	
 	public BubbleSort(Integer[] Vet){
 		super(Vet);
-	}
-	
-	public BubbleSort(Integer[] Vet, Comparator<Integer> Comp){
-		super(Vet, Comp);
 	}
 	
 	@Override
@@ -24,7 +20,7 @@ public class BubbleSort extends Sort {
 			swapped = false;
 			n--;
 			for(int i = 0; i < n; i++) {
-				if(comp.compare(vet[i],vet[i+1]) > 0) {
+				if(vet[i+1] < vet[i]) {
 					Integer aux = vet[i];
 					vet[i] = vet[i+1];
 					vet[i+1] = aux;
