@@ -24,7 +24,7 @@ public class Client {
 		
 		System.out.println("Digite o tipo de ordenacao.");
 		
-		Integer type = Integer.valueOf(entrada.next());
+		Compute.SortType type = Compute.SortType.valueOf(entrada.next());
 		
 		entrada.close();
 		

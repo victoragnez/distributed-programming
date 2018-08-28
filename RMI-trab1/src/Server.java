@@ -13,41 +13,41 @@ public class Server extends UnicastRemoteObject implements Compute {
 		super(); 
 	}
 	
-	public Pair<Integer[], Long> sortArray(Integer sortType, Integer[] inputArray, Comparator<Integer> Comp) throws RemoteException {
+	public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray, Comparator<Integer> Comp) throws RemoteException {
 		System.out.println("Executando a tarefa no servidor...");
 		Sort ordena;
 		switch(sortType) {
-		case 0:
+		case INSERTION:
 			ordena = new InsertionSort(inputArray, Comp);
 			break;
-		case 1:
+		case MERGE:
 			ordena = new MergeSort(inputArray, Comp);
 			break;
-		case 2:
+		case SELECTION:
 			ordena = new SelectionSort(inputArray, Comp);
 			break;
-		case 3:
+		case RANDOM:
 			ordena = new RandomSort(inputArray, Comp);
 			break;
-		case 4:
+		case BUBBLE:
 			ordena = new BubbleSort(inputArray, Comp);
 			break;
-		case 5:
+		case HEAP:
 			ordena = new HeapSort(inputArray, Comp);
 			break;
-		case 6:
+		case QUICK:
 			ordena = new QuickSort(inputArray, Comp);
 			break;
-		case 7:
+		case RADIX:
 			ordena = new RadixSort(inputArray, Comp);
 			break;
-		case 8:
+		case COUNTING:
 			ordena = new CountingSort(inputArray, Comp);
 			break;
-		case 9:
+		case BINARYTREE:
 			ordena = new BinaryTreeSort(inputArray, Comp);
 			break;
-		case 10:
+		case STOOGE:
 			ordena = new StoogeSort(inputArray, Comp);
 			break;
 		default:
@@ -58,7 +58,7 @@ public class Server extends UnicastRemoteObject implements Compute {
 		return new Pair<Integer[], Long>(array, System.nanoTime()-startTime);
 	}
 	
-	public Pair<Integer[], Long> sortArray(Integer sortType, Integer[] inputArray) throws RemoteException {
+	public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray) throws RemoteException {
 		return sortArray(sortType, inputArray, Comparator.<Integer>naturalOrder());
 	}
 	
