@@ -22,13 +22,28 @@ public class Client {
 		for(int i = 0; i < n; i++)
 			vet[i] = Integer.valueOf(entrada.next());
 		
-		System.out.println("Digite o tipo de ordenacao.");
+		Compute.SortType type = null;
 		
-		Compute.SortType type = Compute.SortType.valueOf(entrada.next());
-		
+		while(true) {
+			
+			System.out.println("Digite o tipo de ordenação.");
+			String readType = entrada.next().toUpperCase();
+			
+			for(Compute.SortType s : Compute.SortType.values())
+				if(readType.equals(s.toString().toUpperCase())) 
+					type = s;
+			
+			if(type != null)
+				break;
+			
+			System.out.println("Ordenação inválida. Opções:");
+			
+			for(Compute.SortType s : Compute.SortType.values())
+				System.out.println(s);
+		}
 		entrada.close();
 		
-		Compute stub = (Compute) Naming.lookup("rmi://localhost:12346/compute");
+		Compute stub = (Compute) Naming.lookup("rmi://localhost:" + Compute.port + "/compute");
 
 		Pair<Integer[], Long> retorno = stub.sortArray(type, vet);
 		vet = retorno.getKey();

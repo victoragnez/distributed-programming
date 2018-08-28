@@ -7,11 +7,11 @@ import javafx.util.Pair;
 public interface Compute extends Remote {
 	
 	public enum SortType {
-		QUICK, MERGE, RADIX, RANDOM, HEAP, INSERTION, COUNTING,
-		BUBBLE, BINARYTREE, SELECTION, STOOGE
+		BinaryTree, Bubble, Counting, Heap, Insertion, 
+		Merge, Quick, Radix, Random, Selection, Stooge
 	};
 	
-	
+	public final int port = 12347;
 	public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray) throws RemoteException;
 	public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray, Comparator<Integer> Comp) throws RemoteException;
 }
