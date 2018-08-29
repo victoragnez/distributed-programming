@@ -1,8 +1,12 @@
 package server;
 
+import java.util.Comparator;
 import java.util.Random;
 
 public class QuickSort extends Sort {
+	
+	private Comparator<Integer> comp;
+	
 	public QuickSort(){
 		super();
 	}
@@ -11,10 +15,20 @@ public class QuickSort extends Sort {
 		super(Vet);
 	}
 	
+	public QuickSort(Integer[] Vet, Boolean order){
+		super(Vet, order);
+	}
+	
 	@Override
-	protected Integer[] sort() {
+	public Integer[] sort() {
+		if(naturalOrder)
+			comp = Comparator.<Integer>naturalOrder();
+		else 
+			comp = Comparator.<Integer>reverseOrder();
+		
 		if(vet == null || vet.length < 2)
 			return vet;
+		
 		return sort(vet,0, vet.length-1);
 	}
 	private Integer partition(Integer vet[], int lo, int hi) {
@@ -22,7 +36,7 @@ public class QuickSort extends Sort {
 		
 		int i = lo;
 		for (int j = lo; j < hi; j++){
-			if(vet[j] < pivot ) {
+			if(comp.compare(vet[j], pivot) < 0 ) {
 				Integer temp = vet[j];
 				vet[j] = vet[i];
 				vet[i] = temp;

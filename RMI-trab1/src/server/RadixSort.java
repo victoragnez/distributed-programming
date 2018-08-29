@@ -12,11 +12,22 @@ public class RadixSort extends Sort {
 		super(Vet);
 	}
 	
+	public RadixSort(Integer[] Vet, Boolean order){
+		super(Vet, order);
+	}
+	
 	@Override
-	protected Integer[] sort() {
+	public Integer[] sort() {
 		Integer max = getMax(vet);
 		Integer min = getMin(vet);
 		return sort(vet, max, min);
+	}
+	
+	private Integer getKey(Integer val) {
+		if(naturalOrder)
+			return val;
+		else
+			return 9 - val;
 	}
 	
 	private Integer getMax(Integer[] vet) {
@@ -42,6 +53,7 @@ public class RadixSort extends Sort {
 		}
 		return m;
 	}
+	
 	private ArrayList<Integer> countSort(List<Integer> positives,Integer max) {
 		for(int  i = 1; max/i > 0; i *= 10) {
 			
@@ -52,7 +64,7 @@ public class RadixSort extends Sort {
 				count_digit[j] = 0;
 			
 			for(int j = 0; j < positives.size(); j++) 
-				count_digit[ (positives.get(j)/ i) % 10]++;
+				count_digit[ getKey((positives.get(j)/ i) % 10)]++;
 			
 			for(int j = 1; j < 10 ; j++)
 				count_digit[j] += count_digit[j -1];
@@ -60,8 +72,8 @@ public class RadixSort extends Sort {
 			
 			for (int j = positives.size() - 1; j >= 0; j--){
 				 
-	            out[count_digit[ (positives.get(j)/i)%10 ] - 1] = positives.get(j);
-	            count_digit[ (positives.get(j)/i)%10 ]--;
+	            out[count_digit[ getKey((positives.get(j)/i)%10) ] - 1] = positives.get(j);
+	            count_digit[ getKey((positives.get(j)/i)%10) ]--;
 	       
 			}
 			 
@@ -87,15 +99,22 @@ public class RadixSort extends Sort {
 		}
 		
 		negatives = countSort(negatives, Math.abs(min));
-		
-		for(int i = 0; i < negatives.size(); i++) {
-			vet[i] = -1 * negatives.get(negatives.size() - i -1);
-		}
-		
 		positives = countSort(positives, max);
-		
-		for(int i = 0; i < positives.size(); i++) 
-			vet[i + negatives.size()] = positives.get(i);
+
+		if(naturalOrder) {
+			for(int i = 0; i < negatives.size(); i++) 
+				vet[i] = -1 * negatives.get(negatives.size() - i -1);
+			
+			for(int i = 0; i < positives.size(); i++) 
+				vet[i + negatives.size()] = positives.get(i);
+		}
+		else {
+			for(int i = 0; i < positives.size(); i++) 
+				vet[i] = positives.get(i);
+			
+			for(int i = 0; i < negatives.size(); i++) 
+				vet[i + positives.size()] = -1 * negatives.get(negatives.size() - i -1);
+		}
 		
 		return vet;
 	}

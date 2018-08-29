@@ -1,6 +1,11 @@
 package server;
 
+import java.util.Comparator;
+
 public class BubbleSort extends Sort {
+
+	private Comparator<Integer> comp;
+	
 	public BubbleSort(){
 		super();
 	}
@@ -9,8 +14,17 @@ public class BubbleSort extends Sort {
 		super(Vet);
 	}
 	
+	public BubbleSort(Integer[] Vet, Boolean order){
+		super(Vet, order);
+	}
+	
 	@Override
-	protected Integer[] sort() {
+	public Integer[] sort() {
+		if(naturalOrder)
+			comp = Comparator.<Integer>naturalOrder();
+		else 
+			comp = Comparator.<Integer>reverseOrder();
+		
 		if(vet == null || vet.length < 2)
 			return vet;
 		
@@ -20,7 +34,7 @@ public class BubbleSort extends Sort {
 			swapped = false;
 			n--;
 			for(int i = 0; i < n; i++) {
-				if(vet[i+1] < vet[i]) {
+				if(comp.compare(vet[i+1], vet[i]) < 0) {
 					Integer aux = vet[i];
 					vet[i] = vet[i+1];
 					vet[i+1] = aux;

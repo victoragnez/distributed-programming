@@ -47,10 +47,17 @@ public class Client {
 			for(Compute.SortType s : Compute.SortType.values())
 				System.out.println(s);
 		}
+		
+		System.out.println("Digite 0 para ordem crescente (ou não-decrescente) ou outro valor para decrescente (ou não-crescente).");
+		
+		String ord = entrada.next();
+		
 		entrada.close();
 		
+		Compute.Order order = (ord.equals("0") ? Compute.Order.Increasing : Compute.Order.Decreasing );
+		
 		//Recebe o vetor ordenado e o tempo em nano-segundos
-		Pair<Integer[], Long> result = Comunicate(type, vet);
+		Pair<Integer[], Long> result = Comunicate(type, order, vet);
 		
 		vet = result.getKey();
 		
@@ -62,14 +69,14 @@ public class Client {
 		System.out.println("Tempo gasto: " + String.format("%.5f", result.getValue() / 1e9) + "s" );
 	}
 	
-	static public Pair<Integer[], Long> Comunicate(Compute.SortType type, Integer[] vet) throws MalformedURLException,
+	static public Pair<Integer[], Long> Comunicate(Compute.SortType type, Compute.Order order, Integer[] vet) throws MalformedURLException,
 		RemoteException, NotBoundException {
 		
 		//Instancia o stub do cliente
 		Compute stub = (Compute) Naming.lookup("rmi://localhost:" + Compute.port + "/compute");
 		
 		//Retorna o resultado da ordenacao
-		return stub.sortArray(type, vet);
+		return stub.sortArray(type, order, vet);
 	}
 	
 }

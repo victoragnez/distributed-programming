@@ -1,39 +1,15 @@
-package client;
+package tests;
 
-import java.net.MalformedURLException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Random;
+
+import shared.Compute;
 import shared.Compute.SortType;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import javafx.util.Pair;
-
-import static org.junit.Assert.*;
-
-@RunWith(Parameterized.class)
-public class ComunicateTest {
+public class TestGenerator {
 	
-	private SortType sort;
-	private Integer[] vet;
-	Comparator<Integer> comp;
-	
-	public ComunicateTest(SortType kind, Integer[] Vet){
-		sort = kind;
-		vet = Vet;
-		comp = Comparator.<Integer>naturalOrder();
-	}
-	
-	@Parameters
-	public static Collection<Object[]> tests(){
+	public static Collection<Object[]> getTests(){
 		ArrayList<Object[]> a = new ArrayList<Object[]>();
 		adiciona(a, SortType.Insertion, true, true, false);
 		adiciona(a, SortType.Merge, true, true, true);
@@ -60,7 +36,7 @@ public class ComunicateTest {
 			a.add(new Object[]{s, new Integer[]{-6,-2,-8,-3}});
 			a.add(new Object[]{s, new Integer[]{-1,3,2}});
 			a.add(new Object[]{s, new Integer[]{6,3,6,3,1,3}});
-			a.add(new Object[]{s, new Integer[]{-11,-17,-15,-928,-627}});
+			a.add(new Object[]{s, new Integer[]{-1,-7,-5,-92,-62}});
 			a.add(new Object[]{s, new Integer[]{4}});
 			a.add(new Object[]{s, new Integer[]{3,3}});
 			a.add(new Object[]{s, new Integer[]{1,2}});
@@ -118,33 +94,5 @@ public class ComunicateTest {
 			}
 			a.add(new Object[]{s, vet});
 		}
-	}
-	
-	@Test(timeout = 5000)
-	public void runTest() throws MalformedURLException, 
-		RemoteException, NotBoundException {
-		
-		Pair<Integer[], Long> retorno = Client.Comunicate(sort, vet);
-		assertNotNull(retorno);
-		
-		if(vet == null) {
-			assertNull(retorno.getKey());
-			return;
-		}
-		
-		int n = vet.length;
-		Integer [] original = vet;
-		
-		vet = retorno.getKey();
-		
-		assertNotNull(vet);
-		assertEquals(vet.length,n);
-		
-		for(int i = 0; i < n - 1; i++)
-			assertTrue(comp.compare(vet[i], vet[i+1]) <= 0);
-		
-		Arrays.sort(original, comp);
-		for(int i = 0; i < n; i++)
-			assertEquals(original[i],vet[i]);
 	}
 }

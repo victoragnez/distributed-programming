@@ -1,6 +1,11 @@
 package server;
 
+import java.util.Comparator;
+
 public class StoogeSort extends Sort {
+	
+	private Comparator<Integer> comp;
+
 	public StoogeSort(){
 		super();
 	}
@@ -9,17 +14,27 @@ public class StoogeSort extends Sort {
 		super(Vet);
 	}
 	
+	public StoogeSort(Integer[] Vet, Boolean order){
+		super(Vet, order);
+	}
+	
 	@Override
-	protected Integer[] sort() {
-		if(vet == null)
-			return null;
+	public Integer[] sort() {
+		if(naturalOrder)
+			comp = Comparator.<Integer>naturalOrder();
+		else 
+			comp = Comparator.<Integer>reverseOrder();
+		
+		if(vet == null || vet.length < 2)
+			return vet;
+		
 		return sort(vet, 0, vet.length-1);
 	}
 	
 	private Integer[] sort(Integer[] vet, int l, int r) {
 		if(r-l+1 < 2)
 			return vet;
-		if(vet[r] < vet[l]) {
+		if(comp.compare(vet[r], vet[l]) < 0) {
 			Integer aux = vet[l];
 			vet[l] = vet[r];
 			vet[r] = aux;

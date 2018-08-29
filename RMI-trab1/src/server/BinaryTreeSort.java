@@ -1,9 +1,12 @@
 package server;
 
+import java.util.Comparator;
 import java.util.Random;
 import javafx.util.Pair;
 
 public class BinaryTreeSort extends Sort {
+	
+	private Comparator<Integer> comp;
 	
 	public BinaryTreeSort(){
 		super();
@@ -12,9 +15,18 @@ public class BinaryTreeSort extends Sort {
 	public BinaryTreeSort(Integer[] Vet){
 		super(Vet);
 	}
+	
+	public BinaryTreeSort(Integer[] Vet, Boolean order){
+		super(Vet, order);
+	}
 
 	@Override
-	protected Integer[] sort() {
+	public Integer[] sort() {
+		if(naturalOrder)
+			comp = Comparator.<Integer>naturalOrder();
+		else 
+			comp = Comparator.<Integer>reverseOrder();
+		
 		if(vet == null || vet.length < 2)
 			return vet;
 		
@@ -87,7 +99,7 @@ public class BinaryTreeSort extends Sort {
 			if(node == null){
 				return new Pair<Node,Node>(null,null);
 			}
-			if(node.value <= v){
+			if(comp.compare(node.value, v) <= 0){
 				Pair<Node,Node> returned = split(node.right, v);
 				node.right = returned.getKey();
 				node.updSize();

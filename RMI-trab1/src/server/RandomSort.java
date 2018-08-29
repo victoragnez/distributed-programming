@@ -1,8 +1,12 @@
 package server;
 
+import java.util.Comparator;
 import java.util.Random;
 
 public class RandomSort extends Sort {
+	
+	private Comparator<Integer> comp;
+
 	public RandomSort(){
 		super();
 	}
@@ -10,16 +14,25 @@ public class RandomSort extends Sort {
 	public RandomSort(Integer[] Vet){
 		super(Vet);
 	}
+
+	public RandomSort(Integer[] Vet, Boolean order){
+		super(Vet, order);
+	}
 	
 	@Override
-	protected Integer[] sort() {
+	public Integer[] sort() {
+		if(naturalOrder)
+			comp = Comparator.<Integer>naturalOrder();
+		else 
+			comp = Comparator.<Integer>reverseOrder();
+		
 		if(vet == null || vet.length < 2)
 			return vet;
 		
 		while(true) {
 			boolean sorted = true;
 			for(int i = 0; i < vet.length - 1; i++) {
-				if(vet[i+1] < vet[i]) {
+				if(comp.compare(vet[i+1], vet[i]) < 0) {
 					sorted = false;
 					break;
 				}
