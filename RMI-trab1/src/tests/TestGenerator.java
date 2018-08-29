@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-import shared.Compute;
 import shared.Compute.SortType;
 
 public class TestGenerator {
