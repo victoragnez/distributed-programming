@@ -11,6 +11,6 @@ public interface Compute extends Remote {
 		Merge, Quick, Radix, Random, Selection, Stooge
 	};
 	
-	public final int port = 12347;
+	public final int port = 12346;
 	public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray) throws RemoteException;
 }

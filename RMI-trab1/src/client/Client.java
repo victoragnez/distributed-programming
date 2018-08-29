@@ -49,17 +49,17 @@ public class Client {
 		}
 		entrada.close();
 		
-		//Retorna o vetor ordenado e o tempo em nano-segundos
-		Pair<Integer[], Long> retorno = Comunicate(type, vet);
+		//Recebe o vetor ordenado e o tempo em nano-segundos
+		Pair<Integer[], Long> result = Comunicate(type, vet);
 		
-		vet = retorno.getKey();
+		vet = result.getKey();
 		
 		//Exibe o vetor
-		for(Object x : vet)
+		for(Integer x : vet)
 			System.out.print(x + " ");
 		
 		System.out.println();
-		System.out.println("Tempo gasto: " + String.format("%.5f", retorno.getValue() / 1e9) + "s" );
+		System.out.println("Tempo gasto: " + String.format("%.5f", result.getValue() / 1e9) + "s" );
 	}
 	
 	static public Pair<Integer[], Long> Comunicate(Compute.SortType type, Integer[] vet) throws MalformedURLException,
@@ -68,6 +68,7 @@ public class Client {
 		//Instancia o stub do cliente
 		Compute stub = (Compute) Naming.lookup("rmi://localhost:" + Compute.port + "/compute");
 		
+		//Retorna o resultado da ordenacao
 		return stub.sortArray(type, vet);
 	}
 	
