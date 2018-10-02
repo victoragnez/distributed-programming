@@ -130,7 +130,7 @@ public class Client {
 				}
 				
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.printStackTrace(System.out);
 			}
 		} while(repeat);
 		
@@ -140,6 +140,8 @@ public class Client {
 				System.out.println("Vetor retornado é nulo");
 			} else {
 				vet = result.getKey();
+				
+				System.out.println("Vetor retornado:");
 				
 				//Exibe o vetor
 				for(Integer x : vet)
@@ -153,6 +155,7 @@ public class Client {
 				}
 			}
 		}
+		System.out.println("Encerrando cliente.");
 	}
 	
 	static public Pair<Integer[], Long> Comunicate(Compute.SortType type, Compute.Order order, Integer[] vet) 
