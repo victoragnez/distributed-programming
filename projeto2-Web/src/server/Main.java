@@ -10,7 +10,7 @@ import shared.Compute;
 public class Main {
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		
-		//Criando registro para objetos remotos serem acessados pela porta Compute.port
+		/*//Criando registro para objetos remotos serem acessados pela porta Compute.port
 		LocateRegistry.createRegistry(Compute.port);
 		
 		//Instancia a classe do servidor
@@ -21,6 +21,6 @@ public class Main {
 		//(Re)binding
 		Naming.rebind("rmi://" + ip + ":" + Compute.port + "/compute", compute);
 		
-		System.out.println("Servidor instanciado e registrado no RMI Registry.");
+		System.out.println("Servidor instanciado e registrado no RMI Registry.");*/
 	}
 }

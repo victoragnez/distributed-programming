@@ -1,14 +1,24 @@
 package client;
 
 import shared.Compute;
+
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+
 import javafx.util.Pair;
 
-public class Client {
+public class MeuClient {
 	public static void main(String[] args) {
 
 		
@@ -93,41 +103,20 @@ public class Client {
 			tryCount++;
 			
 			try {
-				result = Comunicate(type, order, vet);
-				if(result == null) {
-					System.out.println("Servidor retornou nulo.");
-				}
-			} catch (RemoteException e) {
-				e.printStackTrace(System.out);
+/*				URL url = new URL("http://localhost:8080/Trab2-Web/api/sortArray");
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				conn.setRequestMethod("GET");
+				conn.setRequestProperty("Accept", "application/json");
 				
-				System.out.println("Erro remoto");
+				if(conn.getResponseCode() != 200) {
+					//TODO
+				}*/
 				
-				if(tryCount < maxTry) {
-					System.out.println("Tentanto novamente em 3s...");
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e1) {
-						System.out.println("Sleep interrompido");
-					}
-					
-					repeat = true;
-				}
+				Client client = ClientBuilder.newClient();
+				result = client.target("http://localhost:8080/Trab2-Web/api").
+						path("sortArray").request(MediaType.APPLICATION_JSON).
+						get(new GenericType<Pair<Integer[], Long>>(){} );
 				
-			} catch (NotBoundException e) {
-				e.printStackTrace(System.out);
-				
-				System.out.println("Objeto remoto não encontrado.");
-				
-				if(tryCount < maxTry) {
-					System.out.println("Tentanto novamente em 3s...");
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e1) {
-						System.out.println("Sleep interrompido");
-					}
-					
-					repeat = true;
-				}
 				
 			} catch (Exception e) {
 				e.printStackTrace(System.out);

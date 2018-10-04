@@ -4,15 +4,30 @@ import java.lang.reflect.Constructor;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import javafx.util.Pair;
-import shared.Compute;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-@SuppressWarnings("serial")
-public class Server extends UnicastRemoteObject implements Compute {
+import shared.Compute.*;
+
+@Path("api")
+public class Server {
+
 	protected Server() throws RemoteException { 
 		super(); 
 	}
 	
-	public Pair<Integer[], Long> sortArray(SortType sortType, Order order, Integer[] inputArray) throws RemoteException {
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/sortArray")
+	public Pair<Integer[], Long> sortArray(/*SortType sortType, Order order, */@QueryParam("array") Integer[] inputArray) throws RemoteException {
+		
+		SortType sortType = SortType.Merge;
+		Order order = Order.Increasing;
+		
 		if(sortType == null) {
 			System.out.println("sortType nulo");
 			throw new NullPointerException("Null sortType");
@@ -54,9 +69,10 @@ public class Server extends UnicastRemoteObject implements Compute {
 		
 		//Retorna um Pair com o vetor ordenado e o tempo
 		return new Pair<Integer[], Long>(array, totalTime);
+//		return Response.status(200).entity(new Pair<Integer[], Long>(array, totalTime)).build();
 	}
 	
-	public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray) throws RemoteException {
+	/*public Pair<Integer[], Long> sortArray(SortType sortType, Integer[] inputArray) throws RemoteException {
 		return sortArray(sortType, Order.Decreasing, inputArray);
-	}
+	}*/
 }

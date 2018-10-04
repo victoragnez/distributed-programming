@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="javafx-base-11-ea+23-linux.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="javax.ws.rs-api-2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
