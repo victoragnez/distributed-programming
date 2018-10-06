@@ -27,6 +27,7 @@ import javax.ws.rs.core.Application;
 import shared.Compute.SortType;
 import shared.Compute.Order;
 
+
 @Path("/hello")
 public class Hello {
 
@@ -107,6 +108,57 @@ public class Hello {
 		}
 		builder.append(')');
 		return builder.toString();
+	}
+	
+	
+	@GET
+	@Path("/sortArrayJSON")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Out sortJSON(@QueryParam("sort") final String s,@QueryParam("list") final String list){
+		String[] lista = list.split(",");
+		Integer[] array = new Integer[lista.length];
+		Sort ordena;
+		try {
+			//Nome da classe com o algoritmo
+			String className = "server." + s + "Sort";
+			
+			//Classe do Sort escolhido
+			Class<?> classe = Class.forName(className);
+			
+			//Construtor a ser invocado
+			Constructor<?> construtor = classe.getDeclaredConstructor(new Class[] {Integer[].class, Boolean.class});
+			
+			//Instancia da classe
+			ordena = (Sort)construtor.newInstance(new Object[]{array, true});
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro na instanciação do Sort\n" + e.getMessage());
+		}
+		
+		for(int i = 0; i < lista.length ; i++) {
+			try{
+		        array[i] = Integer.parseInt(lista[i]);
+		    }
+		    catch (NumberFormatException nfe)   
+		    {
+		        array[i] = null;
+		    }
+		}
+		//Instante inicial
+		Long startTime = System.nanoTime();
+		
+		//Ordena
+		Integer[] arrayOutput = ordena.sort();
+		
+		//Calcula o tempo total
+		Long totalTime = System.nanoTime()-startTime;
+
+		Out out = new Out();
+		out.setArray(arrayOutput);
+		out.setTime(totalTime);
+		
+		return out;
 	}
 
 }
