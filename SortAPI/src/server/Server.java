@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import javafx.util.Pair;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -16,14 +17,19 @@ import shared.Compute.*;
 @Path("api")
 public class Server {
 
-	protected Server() throws RemoteException { 
-		super(); 
+	public Server() { 
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String sayPlainTextHello() {
+		return "Hello Jersey";
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/sortArray")
-	public Pair<Integer[], Long> sortArray(/*SortType sortType, Order order, */@QueryParam("array") Integer[] inputArray) throws RemoteException {
+	@Path("/sortArray/{array}")
+	public Pair<Integer[], Long> sortArray(/*SortType sortType, Order order, */@PathParam("array") Integer[] inputArray) throws RemoteException {
 		
 		SortType sortType = SortType.Merge;
 		Order order = Order.Increasing;
