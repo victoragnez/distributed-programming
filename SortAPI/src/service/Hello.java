@@ -55,9 +55,28 @@ public class Hello {
 	@GET
 	@Path("/sortArray")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String receiveListOfStrings(@QueryParam("list") final String list){
+	public String receiveListOfStrings(@QueryParam("sort") final String s,@QueryParam("list") final String list){
 		String[] lista = list.split(",");
 		Integer[] array = new Integer[lista.length];
+		Sort ordena;
+		try {
+			//Nome da classe com o algoritmo
+			String className = "server." + s + "Sort";
+			
+			//Classe do Sort escolhido
+			Class<?> classe = Class.forName(className);
+			
+			//Construtor a ser invocado
+			Constructor<?> construtor = classe.getDeclaredConstructor(new Class[] {Integer[].class, Boolean.class});
+			
+			//Instancia da classe
+			ordena = (Sort)construtor.newInstance(new Object[]{array, true});
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro na instanciação do Sort\n" + e.getMessage());
+		}
+		
 		for(int i = 0; i < lista.length ; i++) {
 			try{
 		        array[i] = Integer.parseInt(lista[i]);
@@ -67,14 +86,26 @@ public class Hello {
 		        array[i] = null;
 		    }
 		}
-		Sort ordena = new MergeSort(array, true);
+		//Instante inicial
+		Long startTime = System.nanoTime();
+		
+		//Ordena
 		Integer[] arrayOutput = ordena.sort();
+		
+		//Calcula o tempo total
+		Long totalTime = System.nanoTime()-startTime;
+
 		StringBuilder builder = new StringBuilder();
+		
+		builder.append('(');
+		builder.append(totalTime.toString());
+		builder.append(';');
 		for (int i = 0; i < arrayOutput.length ; i++) {
 		  builder.append(arrayOutput[i]);
 		  if(i != arrayOutput.length -1)
 			  builder.append(',');
 		}
+		builder.append(')');
 		return builder.toString();
 	}
 
