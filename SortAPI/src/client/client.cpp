@@ -149,8 +149,8 @@ int main(){
 		
 		//Query pelo URL com retorno em JSON:
 		if(!arquivo) {
-			http_client cliente(U("http://localhost:8080/SortAPI/rest/hello"));
-			uri_builder uri(U("/sortArrayJSON"));
+			http_client cliente(U("http://localhost:8080/SortAPI/api"));
+			uri_builder uri(U("/sortArrayJSONPOST"));
 			uri.append_query(U("sort"), U(tipo.c_str()));
 			
 			std::ostringstream lista;
@@ -171,7 +171,7 @@ int main(){
 		
 		//Query pelo JSON:
 		else{
-			http_client cliente(U("http://localhost:8080/SortAPI/rest/api"));
+			http_client cliente(U("http://localhost:8080/SortAPI/api"));
 			uri_builder uri(U("/sortArrayJSONPOST"));
 			
 			if(tentativa == 0){
