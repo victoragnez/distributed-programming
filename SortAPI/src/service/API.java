@@ -8,9 +8,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
+
+import com.wordnik.swagger.annotations.Api;
+
 import server.Sort;
 import shared.*;
 
+@Api(value="/api", description="Operations")
 @Path("/api")
 public class API implements Compute {
 	
