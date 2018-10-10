@@ -4,14 +4,6 @@ public class CountingSort extends Sort {
 	
 	Integer max_val, min_val;
 
-	public CountingSort(){
-		super();
-	}
-	
-	public CountingSort(Integer[] Vet){
-		super(Vet);
-	}
-	
 	public CountingSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
 	}

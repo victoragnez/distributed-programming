@@ -4,27 +4,19 @@ import java.util.Comparator;
 
 public class MergeSort extends Sort {
 	
-	private Comparator<Integer> comp;
-	
-	public MergeSort(){
-		super();
-	}
-	
-	public MergeSort(Integer[] Vet){
-		super(Vet);
-	}
+	private final Comparator<Integer> comp;
 	
 	public MergeSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
-	
-	@Override
-	public Integer[] sort() {
+		
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
-		
+	}
+	
+	@Override
+	public Integer[] sort() {
 		return sort(vet);
 	}
 	

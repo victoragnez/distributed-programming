@@ -6,26 +6,19 @@ import javafx.util.Pair;
 
 public class BinaryTreeSort extends Sort {
 	
-	private Comparator<Integer> comp;
-	
-	public BinaryTreeSort(){
-		super();
-	}
-	
-	public BinaryTreeSort(Integer[] Vet){
-		super(Vet);
-	}
+	private final Comparator<Integer> comp;
 	
 	public BinaryTreeSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
-
-	@Override
-	public Integer[] sort() {
+		
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
+	}
+
+	@Override
+	public Integer[] sort() {
 		
 		if(vet == null || vet.length < 2)
 			return vet;
@@ -34,7 +27,7 @@ public class BinaryTreeSort extends Sort {
 		for(int i = 0; i < vet.length; i++)
 			tree.insert(vet[i]);
 
-		vet = tree.traverse();
+		tree.traverse(vet);
 		return vet;
 	}
 	
@@ -118,12 +111,11 @@ public class BinaryTreeSort extends Sort {
 			root = merge(returned.getKey(), merge(new Node(val), returned.getValue()));
 		}
 		
-		public Integer[] traverse() {
+		public Integer[] traverse(Integer[] vet) {
 			if(root == null)
 				return null;
-			Integer [] ret = new Integer[root.getSize()];
-			traverse(root, ret, 0);
-			return ret;
+			traverse(root, vet, 0);
+			return vet;
 		}
 		
 		private Integer traverse(Node node, Integer[] vet, int pos) {

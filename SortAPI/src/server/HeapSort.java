@@ -5,27 +5,19 @@ import java.util.PriorityQueue;
 
 public class HeapSort extends Sort{
 	
-	private Comparator<Integer> comp;
-	
-	public HeapSort(){
-		super();
-	}
-	
-	public HeapSort(Integer[] Vet){
-		super(Vet);
-	}
+	private final Comparator<Integer> comp;
 	
 	public HeapSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
 	
-	@Override
-	public Integer[] sort() {
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
-		
+	}
+	
+	@Override
+	public Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 		

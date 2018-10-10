@@ -3,6 +3,8 @@ package service;
 public class InputModel {
 	String sortType;
 	Integer[] array;
+	private Boolean isIncreasing;
+	
 	/**
 	 * @return the sortType
 	 */
@@ -26,5 +28,17 @@ public class InputModel {
 	 */
 	public void setArray(Integer[] array) {
 		this.array = array;
+	}
+	/**
+	 * @return the isIncreasing
+	 */
+	public Boolean getIsIncreasing() {
+		return isIncreasing;
+	}
+	/**
+	 * @param isIncreasing the isIncreasing to set
+	 */
+	public void setIsIncreasing(Boolean isIncreasing) {
+		this.isIncreasing = isIncreasing;
 	}
 }

@@ -4,27 +4,19 @@ import java.util.Comparator;
 
 public class InsertionSort extends Sort {
 	
-	private Comparator<Integer> comp;
-	
-	public InsertionSort(){
-		super();
-	}
-	
-	public InsertionSort(Integer[] Vet){
-		super(Vet);
-	}
+	private final Comparator<Integer> comp;
 	
 	public InsertionSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
-	
-	@Override
-	public Integer[] sort() {
+
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
-		
+	}
+	
+	@Override
+	public Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 

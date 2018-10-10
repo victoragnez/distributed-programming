@@ -4,26 +4,19 @@ import java.util.Comparator;
 
 public class BubbleSort extends Sort {
 
-	private Comparator<Integer> comp;
-	
-	public BubbleSort(){
-		super();
-	}
-	
-	public BubbleSort(Integer[] Vet){
-		super(Vet);
-	}
+	private final Comparator<Integer> comp;
 	
 	public BubbleSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
-	
-	@Override
-	public Integer[] sort() {
+		
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
+	}
+	
+	@Override
+	public Integer[] sort() {
 		
 		if(vet == null || vet.length < 2)
 			return vet;

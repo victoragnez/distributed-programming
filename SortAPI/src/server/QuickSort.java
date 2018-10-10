@@ -5,27 +5,19 @@ import java.util.Random;
 
 public class QuickSort extends Sort {
 	
-	private Comparator<Integer> comp;
-	
-	public QuickSort(){
-		super();
-	}
-	
-	public QuickSort(Integer[] Vet){
-		super(Vet);
-	}
+	private final Comparator<Integer> comp;
 	
 	public QuickSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
-	
-	@Override
-	public Integer[] sort() {
+
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
-		
+	}
+	
+	@Override
+	public Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 		

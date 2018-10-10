@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RadixSort extends Sort {
-	public RadixSort(){
-		super();
-	}
-	
-	public RadixSort(Integer[] Vet){
-		super(Vet);
-	}
 	
 	public RadixSort(Integer[] Vet, Boolean order){
 		super(Vet, order);

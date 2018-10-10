@@ -29,7 +29,4 @@ public class OutputModel {
 		this.array = array;
 	}
 	
-	
-	
-	
 }

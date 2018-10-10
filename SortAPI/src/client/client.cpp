@@ -69,7 +69,7 @@ int readInt(bool positivo = false){
 		if(neg)
 			val = -val;
 		
-		if(ok && val >= (1<<31) && val <= ((-1)^(1<<31)))
+		if(ok && val >= (1<<31) && val <= ((-1)^(1<<31)) && (val > 0 || !positivo))
 			return (int)val;
 		
 		printf("Valor inválido. Digite um valor inteiro de 32 bits");
@@ -103,6 +103,7 @@ int main(){
 	const bool arquivo = (c == '0');	
 	std::vector<int> vet;
 	std::string tipo, nomeArquivo;
+	bool crescente = true;
 	
 	if(!arquivo){
 		printf("Digite o tamanho do vetor.\n");
@@ -133,6 +134,12 @@ int main(){
 		
 			printf("Tipo inválido. Tipos disponíveis:\n");
 		} while(true);
+		
+		printf("Digite 0 para ordem decrescente ou outro valor para ordem crescente.\n");
+		
+		scanf(" %c", &c);
+		crescente = (c != '0');
+		
 	}
 	
 	
@@ -150,8 +157,9 @@ int main(){
 		//Query pelo URL com retorno em JSON:
 		if(!arquivo) {
 			http_client cliente(U("http://localhost:8080/SortAPI/api"));
-			uri_builder uri(U("/sortArrayJSONPOST"));
+			uri_builder uri(U("/sortArray"));
 			uri.append_query(U("sort"), U(tipo.c_str()));
+			uri.append_query(U("isIncreasing"), U(crescente ? "true" : "false"));
 			
 			std::ostringstream lista;
 			lista << std::dec;
@@ -172,7 +180,7 @@ int main(){
 		//Query pelo JSON:
 		else{
 			http_client cliente(U("http://localhost:8080/SortAPI/api"));
-			uri_builder uri(U("/sortArrayJSONPOST"));
+			uri_builder uri(U("/sortArrayJSON"));
 			
 			if(tentativa == 0){
 				while(true){

@@ -4,27 +4,19 @@ import java.util.Comparator;
 
 public class SelectionSort extends Sort {
 	
-	private Comparator<Integer> comp;
+	private final Comparator<Integer> comp;
 
-	public SelectionSort(){
-		super();
-	}
-	
-	public SelectionSort(Integer[] Vet){
-		super(Vet);
-	}
-	
 	public SelectionSort(Integer[] Vet, Boolean order){
 		super(Vet, order);
-	}
-	
-	@Override
-	public Integer[] sort() {
+
 		if(naturalOrder)
 			comp = Comparator.<Integer>naturalOrder();
 		else 
 			comp = Comparator.<Integer>reverseOrder();
-		
+	}
+	
+	@Override
+	public Integer[] sort() {
 		if(vet == null || vet.length < 2)
 			return vet;
 		
