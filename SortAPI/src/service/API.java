@@ -24,7 +24,7 @@ public class API implements Compute {
 	@GET
 	@Path("/sortArray")
 	@Produces(MediaType.APPLICATION_JSON)
-	public OutputModelInterface sortArray(@QueryParam("sortType") final String sortType,
+	public OutputModel sortArray(@QueryParam("sortType") final String sortType,
 			@QueryParam("list") final String list,
 			@QueryParam("isIncreasing") final Boolean isIncreasing){
 		
@@ -75,7 +75,7 @@ public class API implements Compute {
 	@Path("/sortArrayJSON")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OutputModelInterface sortArrayJSON(InputModelInterface in) {
+	public OutputModel sortArrayJSON(InputModel in) {
 		
 		if(in.getIsIncreasing() == null) {
 			in.setIsIncreasing(true);

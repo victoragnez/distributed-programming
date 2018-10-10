@@ -158,7 +158,7 @@ int main(){
 		if(!arquivo) {
 			http_client cliente(U("http://localhost:8080/SortAPI/api"));
 			uri_builder uri(U("/sortArray"));
-			uri.append_query(U("sort"), U(tipo.c_str()));
+			uri.append_query(U("sortType"), U(tipo.c_str()));
 			uri.append_query(U("isIncreasing"), U(crescente ? "true" : "false"));
 			
 			std::ostringstream lista;
