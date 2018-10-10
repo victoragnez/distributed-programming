@@ -8,9 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import service.InputModel;
-import service.OutputModel;
-
 /**
  * 
  * A web service to sort an array of integers.
@@ -46,7 +43,7 @@ public interface Compute {
 	@GET
 	@Path("/sortArray")
 	@Produces(MediaType.APPLICATION_JSON)
-	public OutputModel sortArray(@QueryParam("sortType") final String sortType,
+	public OutputModelInterface sortArray(@QueryParam("sortType") final String sortType,
 			@QueryParam("list") final String list,
 			@QueryParam("isIncreasing") final Boolean isIncreasing);
 	
@@ -60,6 +57,6 @@ public interface Compute {
 	@Path("/sortArrayJSON")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OutputModel sortArrayJSON(InputModel in);
+	public OutputModelInterface sortArrayJSON(InputModelInterface in);
 	
 }

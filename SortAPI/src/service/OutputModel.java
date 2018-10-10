@@ -1,6 +1,8 @@
 package service;
 
-public class OutputModel {
+import shared.OutputModelInterface;
+
+public class OutputModel implements OutputModelInterface {
 	Long time;
 	Integer[] array;
 	

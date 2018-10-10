@@ -9,7 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import server.Sort;
-import shared.Compute;
+import shared.*;
 
 @Path("/api")
 public class API implements Compute {
@@ -24,7 +24,7 @@ public class API implements Compute {
 	@GET
 	@Path("/sortArray")
 	@Produces(MediaType.APPLICATION_JSON)
-	public OutputModel sortArray(@QueryParam("sortType") final String sortType,
+	public OutputModelInterface sortArray(@QueryParam("sortType") final String sortType,
 			@QueryParam("list") final String list,
 			@QueryParam("isIncreasing") final Boolean isIncreasing){
 		
@@ -75,7 +75,7 @@ public class API implements Compute {
 	@Path("/sortArrayJSON")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OutputModel sortArrayJSON(InputModel in) {
+	public OutputModelInterface sortArrayJSON(InputModelInterface in) {
 		
 		if(in.getIsIncreasing() == null) {
 			in.setIsIncreasing(true);
