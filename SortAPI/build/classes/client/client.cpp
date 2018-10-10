@@ -172,7 +172,7 @@ int main(){
 			
 			std::string tmp = lista.str();
 			
-			uri.append_query(U("array"), tmp.c_str());
+			uri.append_query(U("list"), tmp.c_str());
 			
 			return cliente.request(methods::GET, uri.to_string());
 		}

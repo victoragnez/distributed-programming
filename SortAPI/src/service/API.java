@@ -9,12 +9,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 
-import com.wordnik.swagger.annotations.Api;
-
 import server.Sort;
 import shared.*;
 
-@Api(value="/api", description="Operations")
 @Path("/api")
 public class API implements Compute {
 	
@@ -29,7 +26,7 @@ public class API implements Compute {
 	@Path("/sortArray")
 	@Produces(MediaType.APPLICATION_JSON)
 	public OutputModel sortArray(@QueryParam("sortType") final String sortType,
-			@QueryParam("list") final String list,
+			@QueryParam("array") final String list,
 			@QueryParam("isIncreasing") final Boolean isIncreasing){
 		
 		String[] lista = (list == null) ? (new String[0]) : list.split(",");

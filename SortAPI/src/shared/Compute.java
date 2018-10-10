@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
  * 
  * A web service to sort an array of integers.
  * The Client may send the array using a JSON file or inside the URI.
- * The sorted array is returned with the time (in microseconds) in a JSON file.
+ * The sorted array is returned with the time (in nanoseconds) in a JSON file.
  * 
  * @author Artur Curinga and Victor Agnez
  *
@@ -31,11 +31,11 @@ public interface Compute {
 	
 	/**
 	 * Get method to sort an array inside the URI.
-	 * Example: http://(IP_Address)/SortAPI/api/sortArray?sort=Bubble&list=3,1,2&isIncreasing=true
+	 * Example: http://(IP_Address)/SortAPI/api/sortArray?sort=Bubble&array=3,1,2&isIncreasing=true
 	 * @param sortType the desired sorting algorithm. Possible values: 
 	 *  BinaryTree, Bubble, Counting, Heap, Insertion, 
 		Merge, Quick, Radix, Random, Selection, Stooge.
-	 * @param list the array of integers to sort
+	 * @param array the array of integers to sort
 	 * @param isIncreasing a boolean to tell if the array should be sorted 
 	 * either in increasing or decreasing order.
 	 * @return the JSON file with the elapsed time to sort and the sorted array.
@@ -44,12 +44,12 @@ public interface Compute {
 	@Path("/sortArray")
 	@Produces(MediaType.APPLICATION_JSON)
 	public OutputModel sortArray(@QueryParam("sortType") final String sortType,
-			@QueryParam("list") final String list,
+			@QueryParam("array") final String array,
 			@QueryParam("isIncreasing") final Boolean isIncreasing);
 	
 	/**
 	 * Post method to sort an array in a JSON file.
-	 * @param in the JSON file with values "sortType", "list" and "isIncreasing",
+	 * @param in the JSON file with values "sortType", "array" and "isIncreasing",
 	 * which have the same meaning as in the function above.
 	 * @return the JSON file with the elapsed time to sort and the sorted array.
 	 */
